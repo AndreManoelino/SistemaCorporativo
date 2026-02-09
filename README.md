@@ -41,3 +41,4 @@ Irei implementar ne ja comecei no contexto tambem a parte de gestao alyteração
 
 Tambem pensando logico como primordial como boa prática em desenvolvimento nao me esquencendo da LGPD irei inicialmente pensamndo em algo mais simples autenticacao baseada por identidade, perfis e permissoes por cargos, senhas criptografadas , mais irei depois tentar desenvolver por mais camadas de segunranca de autenticacao nao deixar somente ali por uma senha ou email cpf implementar um sistema de reconheciemnto facial, verificação de duaas etapas utilizando authenticator masi para frente.
 
+atualizar
