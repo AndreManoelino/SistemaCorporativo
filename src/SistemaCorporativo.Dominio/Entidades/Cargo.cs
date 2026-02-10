@@ -1,15 +1,15 @@
-using System;
 
 namespace SistemaCorporativo.Dominio.Entidades
 {
     public class Cargo
     {
-        public Guid Id { get; private set; }
-        public string Nome { get; private set; }
-        public string Descricao { get; private set; }
-        public bool Ativo { get; private set; }
+        public Guid Id {get; private set;}
+        public string Nome{get; private set;}
+        public string Descricao{get; private set;}
 
-        protected Cargo() { } // Necessário para EF futuramente
+        public bool Ativo{get; private set;}
+
+        protected Cargo(){}
 
         public Cargo(string nome, string descricao)
         {
@@ -17,32 +17,28 @@ namespace SistemaCorporativo.Dominio.Entidades
             Nome = nome;
             Descricao = descricao;
             Ativo = true;
-
-            Validar();
         }
 
         private void Validar()
         {
             if (string.IsNullOrWhiteSpace(Nome))
-                throw new ArgumentException("O nome do cargo é obrigatório.");
-
-            if (Nome.Length < 3)
-                throw new ArgumentException("O nome do cargo deve ter pelo menos 3 caracteres.");
+                throw new ArgumentException("O nome do cargo é obrigátorio!");
+            if (string.IsNullWhiteSpace(Descricao))
+                throw new ArgumentException("A descrição do cargo é obrigatoria!");
         }
 
-        public void AtualizarDescricao(string descricao)
+        public void AtualizarDescricao(string novaDescricao)
         {
-            if (string.IsNullOrWhiteSpace(descricao))
-                throw new ArgumentException("A descrição do cargo é obrigatória.");
+            if (string.IsNullWhiteSpace(novaDescricao))
+                throw new ArgumentException("Descrição inválida!");
 
-            Descricao = descricao;
+            Descricao = novaDescricao;
         }
 
         public void Desativar()
         {
             Ativo = false;
         }
-
         public void Ativar()
         {
             Ativo = true;
