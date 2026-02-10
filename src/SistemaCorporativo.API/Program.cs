@@ -6,12 +6,10 @@ using SistemaCorporativo.Aplicacao.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers(); // Registrando controllers
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Registrando nosso serviço de Funcionários (pode ser Singleton ou Scoped)
 builder.Services.AddSingleton<IFuncionarioService, FuncionarioService>();
 
 var app = builder.Build();
@@ -27,6 +25,6 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers(); // Mapear todos os controllers
+app.MapControllers(); // Mapeia  todos os controllers iniciando configutações
 
 app.Run();
