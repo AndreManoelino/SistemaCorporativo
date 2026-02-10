@@ -23,13 +23,13 @@ namespace SistemaCorporativo.Dominio.Entidades
         {
             if (string.IsNullOrWhiteSpace(Nome))
                 throw new ArgumentException("O nome do cargo é obrigátorio!");
-            if (string.IsNullWhiteSpace(Descricao))
+            if (string.IsNullOrWhiteSpace(Descricao))
                 throw new ArgumentException("A descrição do cargo é obrigatoria!");
         }
 
         public void AtualizarDescricao(string novaDescricao)
         {
-            if (string.IsNullWhiteSpace(novaDescricao))
+            if (string.IsNullOrWhiteSpace(novaDescricao))
                 throw new ArgumentException("Descrição inválida!");
 
             Descricao = novaDescricao;

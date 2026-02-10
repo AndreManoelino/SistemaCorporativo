@@ -1,28 +1,18 @@
-using System.ComponentModel;
-using System.Diagnostics.Contracts;
-using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Xml;
+using System;
 
 namespace SistemaCorporativo.Dominio.Entidades
 {
     public class Funcionario
     {
-        public Guid Id{get; private set;}
-        public string Nome{get; private set;}
+        public Guid Id { get; private set; }
+        public string Nome { get; private set; }
+        public string Email { get; private set; }
+        public decimal Salario { get; private set; }
+        public DateTime DataAdimissao { get; private set; }
+        public Cargo cargo { get; private set; } // propriedade
+        public bool Ativo { get; private set; }
 
-        public string Email{get; private set;}
-
-        public decimal Salario {get; private set;}
-
-        public Datetime DataAdimissao {get; private set;}
-
-        public Cargo cargo{get; private set;}
-
-        public bool Ativo {get; private set;}
-
-        protected Funcionario() {}
+        protected Funcionario() { }
 
         public Funcionario(string nome, string email, decimal salario, Cargo cargo)
         {
@@ -30,42 +20,47 @@ namespace SistemaCorporativo.Dominio.Entidades
             Nome = nome;
             Email = email;
             Salario = salario;
-            Cargo = cargo;
+            this.cargo = cargo;
             DataAdimissao = DateTime.Now;
             Ativo = true;
 
             Validar();
         }
+
         private void Validar()
         {
             if (string.IsNullOrWhiteSpace(Nome))
-                throw new ArgumentException("Inisira o nome do funcoinário!");
+                throw new ArgumentException("Insira o nome do funcionário!");
             if (string.IsNullOrWhiteSpace(Email))
-                throw new ArgumentException("Insira o email ! ");
+                throw new ArgumentException("Insira o email!");
             if (!Email.Contains("@"))
-                throw new ArgumentException("Email inválido !");
-            
-            if (Salario <= 0) throw new ArgumentException("Salario inválido! ");
-            if (Cargo == null) throw new ArgumentException("Inisria o cargo do funcionário !");
-
+                throw new ArgumentException("Email inválido!");
+            if (Salario <= 0)
+                throw new ArgumentException("Salário inválido!");
+            if (cargo == null) // ✅ usar a propriedade 'cargo' minúscula
+                throw new ArgumentException("Insira o cargo do funcionário!");
         }
+
         public void AtualizarSalario(decimal novoSalario)
         {
-            if (novoSalario <= 0) throw new ArgumentException("Salario inválido!");
+            if (novoSalario <= 0)
+                throw new ArgumentException("Salário inválido!");
             Salario = novoSalario;
         }
 
         public void TrocarCargo(Cargo novoCargo)
         {
-            if (novoCargo == null) throw new ArgumentException("Cargo inválido!");
+            if (novoCargo == null)
+                throw new ArgumentException("Cargo inválido!");
 
-            Cargo = novoCargo;
+            cargo = novoCargo; // ✅ usar a propriedade 'cargo' minúscula
         }
 
         public void Desativar()
         {
             Ativo = false;
         }
+
         public void Ativar()
         {
             Ativo = true;
