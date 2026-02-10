@@ -15,7 +15,7 @@ namespace SistemaCorporativo.API.Controllers
 
         public FuncionariosController()
         {
-            // Como não temos injeção de dependência configurada, instanciamos direto
+            // Instancia
             _funcionarioService = new FuncionarioService();
         }
 
